@@ -8,6 +8,12 @@ To run this project you will need to create a `.env` file at the root of your pr
 * `MONGO_URL`
 * `PORT`
 
+## Rodando o Back
+Para rodá-lo, faça:
+
+> cd BACK
+> yarn
+> yarn start
 
 
 ## Available Scripts
