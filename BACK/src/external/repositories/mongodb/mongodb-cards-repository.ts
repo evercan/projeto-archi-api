@@ -1,13 +1,13 @@
 import { CardsData, CardsRepository } from '@/use-cases/ports'
 import { MongoHelper } from '@/external/repositories/mongodb/helper'
 import { ObjectId } from 'mongodb'
-
+import { v4 as uuidv4 } from 'uuid';
 
 export type MongodbCards = {
   titulo: string,
   conteudo: string,
   lista: string,
-  id: number
+  id: string
 }
 
 export class MongodbCardsRepository implements CardsRepository {
@@ -17,7 +17,7 @@ export class MongodbCardsRepository implements CardsRepository {
       titulo: cards.titulo,
       conteudo: cards.conteudo,
       lista: cards.lista,
-      id: null
+      id: uuidv4()
     }
     await cardsCollection.insertOne(cardsClone)
     return this.withApplicationId(cardsClone)
