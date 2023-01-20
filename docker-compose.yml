@@ -3,7 +3,7 @@ services:
   app:
     build:
       context: ./      
-      dockerfile: setup/Dockerfile    
+      dockerfile: Dockerfile    
     container_name: backend_api
     networks:
       - backendapi
