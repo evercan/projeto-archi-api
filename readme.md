@@ -15,6 +15,11 @@ Então acabei não subindo essa parte.
 A aplicação roda, até manda informações de erro, pq esta configurado o middleware.
 
 
+## Instalação do Mongo
+Para instalação, faça:
+
+> docker-compose up -d
+
 ## Rodando o Back
 Para rodá-lo, faça:
 
