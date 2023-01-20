@@ -1,0 +1,40 @@
+{
+    "extends": ["standard-with-typescript","plugin:boundaries/recommended"],
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "jest": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "rules": {
+        "@typescript-eslint/strict-boolean-expressions": "off",
+        "@typescript-eslint/restrict-plus-operands": "off",
+        "boundaries/entry-point": "off",
+        "boundaries/allowed-types": [2,{
+            "allow": {
+                "entities": ["entities"],
+                "use-cases": ["entities", "use-cases"],
+                "presentation": ["entities", "use-cases", "presentation"],
+                "main": ["entities", "use-cases", "presentation","main"],
+                "external": ["entities", "use-cases","presentation","main", "external"],
+                "shared": ["entities", "use-cases","presentation","main", "external","shared"]
+            }
+        }]
+    },
+    "plugins": ["boundaries"],
+    "settings": {
+        "boundaries/types": ["entities","external","use-cases","main","presentation","shared"],
+        "boundaries/ignore": ["src/**/*/*.spec.ts", "src/**/*/*.test.ts"],
+        "boundaries/alias": {
+            "entities": "src/entities",
+            "use-cases": "src/use-cases",
+            "external": "src/external",
+            "main": "src/main",
+            "presentation": "src/presentation",
+            "shared": "src/shared"
+        }
+    }
+}
