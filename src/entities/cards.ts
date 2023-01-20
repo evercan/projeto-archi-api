@@ -2,7 +2,7 @@
 import { Either, left, right } from '@/shared';
 import { uuid } from 'uuidv4'
 import { CardsData } from './cards-data';
-import { InvalidConteudoError, InvalidListaError, InvalidTituloError } from './errors';
+import { InvalidTituloError } from './errors';
 import { Titulo } from './titulo';
 import { Lista } from './lista';
 import { Conteudo } from './conteudo';

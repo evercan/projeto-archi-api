@@ -1,4 +1,4 @@
-import { InvalidConteudoError, InvalidListaError, InvalidTituloError } from '@/entities/errors'
+import { InvalidListaError, InvalidTituloError } from '@/entities/errors'
 import { HttpRequest, HttpResponse, ControllerOperation } from '@/presentation/controllers/ports'
 import { Either } from '@/shared'
 import { ExistingTituloError, UnregisteredConteudoError, UnregisteredListaError } from '@/use-cases/create-cards/errors'
@@ -19,7 +19,7 @@ export class CreateCardsOperation implements ControllerOperation {
       conteudo: request.body.conteudo,
       lista: request.body.lista
     }
-    const useCaseResponse: Either<InvalidConteudoError | InvalidListaError | InvalidTituloError| ExistingTituloError | UnregisteredConteudoError| UnregisteredListaError, CardsData> =
+    const useCaseResponse: Either<InvalidListaError | InvalidTituloError| ExistingTituloError | UnregisteredConteudoError| UnregisteredListaError, CardsData> =
       await this.useCase.perform(cardsRequest)
 
     if (useCaseResponse.isRight()) {
