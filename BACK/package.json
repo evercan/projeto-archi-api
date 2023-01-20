@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "ISC",
   "scripts": {
-    "start": "tsnd --transpile-only --respawn --ignore-watch node_modules src/main/server.ts",
+    "start": "tsnd --transpile-only --trace-deprecation --respawn --ignore-watch node_modules src/main/server.ts",
     "build": "rimraf dist && tsc -p tsconfig-build.json",
     "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/main/server.ts",
     "prepare": "husky install",
@@ -33,7 +33,7 @@
     "jsonwebtoken": "^9.0.0",
     "module-alias": "^2.2.2",
     "mongodb": "^4.13.0",
-    "mongoose": "^6.8.4",
+    "mongoose": "^5.13.7",
     "rimraf": "^4.0.5",
     "uuidv4": "^6.2.13",
     "winston": "^3.8.2"

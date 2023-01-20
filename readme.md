@@ -10,7 +10,7 @@ Para executar este projeto você precisará criar um arquivo `.env` e ou renomea
 
 ## Dificuldades
 Monte a estrutura separando as responsabilidades. 
-Mas tive alguns problemas com relação a implantação do docker e criação do banco dentro do mesmo.
+Mas tive alguns problemas com relação a implantação do docker.
 Então acabei não subindo essa parte.
 A aplicação roda, até manda informações de erro, pq esta configurado o middleware.
 
