@@ -12,7 +12,8 @@ export class WebController {
   public async handle (request: HttpRequest): Promise<HttpResponse> {
     try {
       const missingParams: string = WebController.getMissingParams(request, this.controllerOp.requiredParams)
-      if (missingParams) {
+      if (!missingParams) {
+        
         return badRequest(new MissingParamError(missingParams))
       }
       return await this.controllerOp.specificOp(request)
@@ -24,9 +25,7 @@ export class WebController {
   public static getMissingParams (request: HttpRequest, requiredParams: string[]): string {
     const missingParams: string[] = []
     requiredParams.forEach(function (name) {
-      if (!Object.keys(request.body).includes(name)) {
         missingParams.push(name)
-      }
     })
     return missingParams.join(', ')
   }

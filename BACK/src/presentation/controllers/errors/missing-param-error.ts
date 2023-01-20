@@ -1,7 +1,7 @@
 export class MissingParamError extends Error {
-  public readonly name = 'MissingParamError'
+  public readonly name = 'Parametro incorreto'
 
   constructor (param: string) {
-    super(`Missing parameter: ${param}.`)
+    super(`Parametro incorreto: ${param}.`)
   }
 }

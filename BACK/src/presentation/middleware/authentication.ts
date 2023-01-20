@@ -17,8 +17,8 @@ export class Authentication implements Middleware {
 
   async handle (request: AuthRequest): Promise<HttpResponse> {
     try {
-      const { accessToken, requesterId } = request
-      if (!accessToken || !requesterId) {
+      const { accessToken } = request
+      if (!accessToken) {
         return forbidden(new Error('Invalid token or requester id.'))
       }
 
@@ -29,9 +29,9 @@ export class Authentication implements Middleware {
 
       const payload: Payload = decodedTokenOrError.value as Payload
 
-      if (payload.id === requesterId) {
-        return ok(payload)
-      }
+      // if (payload.id === requesterId) {
+      //   return ok(payload)
+      // }
 
       return forbidden(new Error('User not allowed to perform this operation.'))
     } catch (error) {

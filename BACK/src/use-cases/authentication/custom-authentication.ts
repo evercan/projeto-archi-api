@@ -1,33 +1,35 @@
 import { AuthenticationParams, AuthenticationResult, AuthenticationService } from '@/use-cases/authentication/ports'
-import { Encoder, CardsRepository } from '@/use-cases/ports'
+import { Encoder, UserRepository } from '@/use-cases/ports'
 import { TokenManager } from '@/use-cases/authentication/ports/token-manager'
 import { Either, left, right } from '@/shared'
-import { CardsNotFoundError, WrongPasswordError } from './errors'
+import { UserNotFoundError, WrongPasswordError } from './errors'
 
 export class CustomAuthentication implements AuthenticationService {
-  private readonly cardsRepository: CardsRepository
+  private readonly userRepository: UserRepository
   private readonly encoder: Encoder
   private readonly tokenManager: TokenManager
 
   constructor
-  (cardsRepository: CardsRepository, encoder: Encoder, tokenManager: TokenManager) {
-    this.cardsRepository = cardsRepository
+  (userRepository: UserRepository, encoder: Encoder, tokenManager: TokenManager) {
+    this.userRepository = userRepository
     this.encoder = encoder
     this.tokenManager = tokenManager
   }
 
   async auth (authenticationParams: AuthenticationParams):
-    Promise<Either<CardsNotFoundError | WrongPasswordError, AuthenticationResult>> {
-    const user = await this.cardsRepository.findByEmail(authenticationParams.email)
+    Promise<Either<UserNotFoundError , AuthenticationResult>> {
+    const user = await this.userRepository.findByLogin(authenticationParams.login)
     if (!user) {
-      return left(new CardsNotFoundError())
+      return left(new UserNotFoundError())
     }
 
-    const matches =
-      await this.encoder.compare(authenticationParams.login, user.password)
-    if (!matches) {
-      return left(new WrongPasswordError())
-    }
+    console.log(user);
+
+    // const matches =
+    //   await this.encoder.compare(authenticationParams.login, user.senha)
+    // if (!matches) {
+    //   return left(new WrongPasswordError())
+    // }
 
     const accessToken = await this.tokenManager.sign({ id: user.id })
 

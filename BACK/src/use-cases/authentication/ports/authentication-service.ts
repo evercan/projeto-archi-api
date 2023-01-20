@@ -1,5 +1,5 @@
 import { Either } from '@/shared'
-import { CardsNotFoundError, WrongPasswordError } from '@/use-cases/authentication/errors'
+import { UserNotFoundError, WrongPasswordError } from '@/use-cases/authentication/errors'
 
 export type AuthenticationParams = {
   login: string
@@ -13,5 +13,5 @@ export type AuthenticationResult = {
 
 export interface AuthenticationService {
   auth: (authenticationParams: AuthenticationParams) =>
-    Promise<Either<CardsNotFoundError | WrongPasswordError, AuthenticationResult>>
+    Promise<Either< UserNotFoundError, AuthenticationResult>>
 }

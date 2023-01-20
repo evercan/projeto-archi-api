@@ -4,8 +4,7 @@ import { Request, Response, NextFunction } from 'express'
 export const adaptMiddleware = (middleware: Middleware) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const request = {
-      accessToken: req.headers['x-access-token'],
-    //  requesterId: req.body.ownerId ? req.body.ownerId : req.body.userId
+      accessToken: req.headers['Authorization: Bearer']
     }
     const httpResponse = await middleware.handle(request)
     if (httpResponse.statusCode === 200) {
